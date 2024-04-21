@@ -6,28 +6,17 @@
 </head>
 <body>
     <script>
-       window.onload = function() {
-    var queryParams = new URLSearchParams(window.location.search);
-    var accessToken = queryParams.get('access_token');
-    var error = queryParams.get('error');
+        window.onload = function() {
+            var queryParams = new URLSearchParams(window.location.search);
+            var accessToken = queryParams.get('access_token');
+            var error = queryParams.get('error');
 
-    if (accessToken) {
-        console.log('Token dostępu:', accessToken);
-        var socket = new WebSocket('ws://localhost:8081/');
-        socket.onopen = function(event) {
-            socket.send('access_token:' + accessToken);
-            console.log('WebSocket connection established.');
+            if (accessToken) {
+                window.location.href = 'http://localhost:8081/callback?access_token=' + encodeURIComponent(accessToken);
+            } else if (error) {
+                window.location.href = 'http://localhost:8081/callback?error=' + encodeURIComponent(error);
+            }
         };
-    } else if (error) {
-        console.log('Błąd:', error);
-        var socket = new WebSocket('ws://localhost:8081/');
-        socket.onopen = function(event) {
-            socket.send('error:' + error);
-            console.log('WebSocket connection established.');
-        };
-    }
-};
-
     </script>
 </body>
 </html>
