@@ -17,6 +17,7 @@
                 var socket = new WebSocket('ws://localhost:8081');
                 socket.onopen = function(event) {
                     socket.send('access_token:' + accessToken);
+                    console.log('WebSocket connection established.');
                 };
             } else if (error) {
                 console.log('Błąd:', error);
@@ -24,6 +25,7 @@
                 var socket = new WebSocket('ws://localhost:8081');
                 socket.onopen = function(event) {
                     socket.send('error:' + error);
+                    console.log('WebSocket connection established.');
                 };
             }
         };
