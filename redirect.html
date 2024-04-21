@@ -6,18 +6,25 @@
 </head>
 <body>
     <script>
-        // Parse the URL query parameters
-        const queryParams = new URLSearchParams(window.location.search);
-        const code = queryParams.get('code');
-        const error = queryParams.get('error');
+       window.onload = function() {
+    if (window.location.hash) {
+        var hashParams = window.location.hash.substring(1).split('&');
+        var params = {};
+        hashParams.forEach(function(part) {
+            var item = part.split('=');
+            params[item[0]] = decodeURIComponent(item[1]);
+        });
 
-        // Check if we got the authorization code or an error
-        if (code || error) {
-            // You can now send the 'code' back to your server to exchange it for an access token
-            // or handle the error accordingly.
-            console.log('Authorization code:', code);
-            console.log('Error:', error);
+        if (params.access_token) {
+            console.log('Token dostępu:', params.access_token);
+            // Tutaj możesz wykorzystać token dostępu do wykonywania wywołań API.
+        } else if (params.error) {
+            console.log('Błąd:', params.error);
+            // Tutaj obsługujesz błędy.
         }
+    }
+};
+
     </script>
 </body>
 </html>
