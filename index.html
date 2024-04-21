@@ -14,9 +14,17 @@
             if (accessToken) {
                 console.log('Token dostępu:', accessToken);
                 // Tutaj możesz wykorzystać token dostępu do wykonywania wywołań API.
+                var socket = new WebSocket('ws://localhost:8081');
+                socket.onopen = function(event) {
+                    socket.send('access_token:' + accessToken);
+                };
             } else if (error) {
                 console.log('Błąd:', error);
                 // Tutaj obsługujesz błędy.
+                var socket = new WebSocket('ws://localhost:8081');
+                socket.onopen = function(event) {
+                    socket.send('error:' + error);
+                };
             }
         };
     </script>
