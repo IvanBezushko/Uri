@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spotify OAuth Redirect</title>
+</head>
+<body>
+    <script>
+        // Parse the URL query parameters
+        const queryParams = new URLSearchParams(window.location.search);
+        const code = queryParams.get('code');
+        const error = queryParams.get('error');
+
+        // Check if we got the authorization code or an error
+        if (code || error) {
+            // You can now send the 'code' back to your server to exchange it for an access token
+            // or handle the error accordingly.
+            console.log('Authorization code:', code);
+            console.log('Error:', error);
+        }
+    </script>
+</body>
+</html>
