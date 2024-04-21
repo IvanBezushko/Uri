@@ -6,25 +6,19 @@
 </head>
 <body>
     <script>
-       window.onload = function() {
-    if (window.location.hash) {
-        var hashParams = window.location.hash.substring(1).split('&');
-        var params = {};
-        hashParams.forEach(function(part) {
-            var item = part.split('=');
-            params[item[0]] = decodeURIComponent(item[1]);
-        });
+        window.onload = function() {
+            var queryParams = new URLSearchParams(window.location.search);
+            var accessToken = queryParams.get('access_token');
+            var error = queryParams.get('error');
 
-        if (params.access_token) {
-            console.log('Token dostępu:', params.access_token);
-            // Tutaj możesz wykorzystać token dostępu do wykonywania wywołań API.
-        } else if (params.error) {
-            console.log('Błąd:', params.error);
-            // Tutaj obsługujesz błędy.
-        }
-    }
-};
-
+            if (accessToken) {
+                console.log('Token dostępu:', accessToken);
+                // Tutaj możesz wykorzystać token dostępu do wykonywania wywołań API.
+            } else if (error) {
+                console.log('Błąd:', error);
+                // Tutaj obsługujesz błędy.
+            }
+        };
     </script>
 </body>
 </html>
