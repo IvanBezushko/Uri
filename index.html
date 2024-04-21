@@ -6,29 +6,28 @@
 </head>
 <body>
     <script>
-        window.onload = function() {
-            var queryParams = new URLSearchParams(window.location.search);
-            var accessToken = queryParams.get('access_token');
-            var error = queryParams.get('error');
+       window.onload = function() {
+    var queryParams = new URLSearchParams(window.location.search);
+    var accessToken = queryParams.get('access_token');
+    var error = queryParams.get('error');
 
-            if (accessToken) {
-                console.log('Token dostępu:', accessToken);
-                // Tutaj możesz wykorzystać token dostępu do wykonywania wywołań API.
-                var socket = new WebSocket('ws://localhost:8081');
-                socket.onopen = function(event) {
-                    socket.send('access_token:' + accessToken);
-                    console.log('WebSocket connection established.');
-                };
-            } else if (error) {
-                console.log('Błąd:', error);
-                // Tutaj obsługujesz błędy.
-                var socket = new WebSocket('ws://localhost:8081');
-                socket.onopen = function(event) {
-                    socket.send('error:' + error);
-                    console.log('WebSocket connection established.');
-                };
-            }
+    if (accessToken) {
+        console.log('Token dostępu:', accessToken);
+        var socket = new WebSocket('ws://localhost:8081/');
+        socket.onopen = function(event) {
+            socket.send('access_token:' + accessToken);
+            console.log('WebSocket connection established.');
         };
+    } else if (error) {
+        console.log('Błąd:', error);
+        var socket = new WebSocket('ws://localhost:8081/');
+        socket.onopen = function(event) {
+            socket.send('error:' + error);
+            console.log('WebSocket connection established.');
+        };
+    }
+};
+
     </script>
 </body>
 </html>
