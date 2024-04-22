@@ -12,9 +12,9 @@
             var error = queryParams.get('error');
 
             if (accessToken) {
-    window.location.href = 'http://localhost:8081/?access_token=' + encodeURIComponent(accessToken);
+    window.location.href = 'http://localhost:8081?access_token=' + encodeURIComponent(accessToken);
     } else if (error) {
-        window.location.href = 'http://localhost:8081/?error=' + encodeURIComponent(error);
+        window.location.href = 'http://localhost:8081?error=' + encodeURIComponent(error);
     }
 
         };
