@@ -10,16 +10,20 @@
             var queryParams = new URLSearchParams(window.location.search);
             var accessToken = queryParams.get('access_token');
             var error = queryParams.get('error');
+            var statusMessage = document.getElementById('status-message');
 
             if (accessToken) {
-    window.location.href = 'http://localhost:8081?access_token=' + encodeURIComponent(accessToken);
-    } else if (error) {
-        window.location.href = 'http://localhost:8081?error=' + encodeURIComponent(error);
-    }
-
+                window.location.href = 'http://localhost:8081?access_token=' + encodeURIComponent(accessToken);
+                statusMessage.textContent = 'Przekierowywanie z tokenem dostępu...';
+            } else if (error) {
+                window.location.href = 'http://localhost:8081?error=' + encodeURIComponent(error);
+                statusMessage.textContent = 'Przekierowywanie z błędem: ' + error;
+            } else {
+                statusMessage.textContent = 'Nie otrzymano tokenu dostępu ani komunikatu o błędzie.';
+            }
         };
     </script>
 
-    <p>Autoryzacja chyba dziala!</p>
+    <p id="status-message">Autoryzacja trwa...</p>
 </body>
 </html>
