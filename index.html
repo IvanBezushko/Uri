@@ -8,18 +8,18 @@
     <script>
         window.onload = function() {
             var queryParams = new URLSearchParams(window.location.search);
-            var accessToken = queryParams.get('access_token');
+            var code = queryParams.get('code');
             var error = queryParams.get('error');
             var statusMessage = document.getElementById('status-message');
 
-            if (accessToken) {
-                window.location.href = 'http://localhost:8081/?access_token=' + encodeURIComponent(accessToken);
-                statusMessage.textContent = 'Przekierowywanie z tokenem dostępu...';
+            if (code) {
+                window.location.href = 'http://localhost:8081/?code=' + encodeURIComponent(code);
+                statusMessage.textContent = 'Przekierowywanie z kodem autoryzacji...';
             } else if (error) {
                 window.location.href = 'http://localhost:8081/?error=' + encodeURIComponent(error);
                 statusMessage.textContent = 'Przekierowywanie z błędem: ' + error;
             } else {
-                statusMessage.textContent = 'Nie otrzymano tokenu dostępu ani komunikatu o błędzie.';
+                statusMessage.textContent = 'Nie otrzymano kodu autoryzacji ani komunikatu o błędzie.';
             }
         };
     </script>
