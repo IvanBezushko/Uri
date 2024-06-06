@@ -13,7 +13,7 @@
             var statusMessage = document.getElementById('status-message');
 
             if (code) {
-                window.location.href = 'http://localhost:7297callback?code=' + encodeURIComponent(code);
+                window.location.href = 'http://localhost:7297/callback?code=' + encodeURIComponent(code);
                 statusMessage.textContent = 'Przekierowywanie z kodem autoryzacji...';
             } else if (error) {
                 window.location.href = 'http://localhost:7297/callback?error=' + encodeURIComponent(error);
