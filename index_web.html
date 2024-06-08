@@ -13,10 +13,10 @@
             var statusMessage = document.getElementById('status-message');
 
             if (code) {
-                window.location.href = 'http://localhost:7297/?code=' + encodeURIComponent(code);
+                window.location.href = 'https://localhost:7297/?code=' + encodeURIComponent(code);
                 statusMessage.textContent = 'Przekierowywanie z kodem autoryzacji...';
             } else if (error) {
-                window.location.href = 'http://localhost:7297/?error=' + encodeURIComponent(error);
+                window.location.href = 'https://localhost:7297/?error=' + encodeURIComponent(error);
                 statusMessage.textContent = 'Przekierowywanie z błędem: ' + error;
             } else {
                 statusMessage.textContent = 'Nie otrzymano kodu autoryzacji ani komunikatu o błędzie.';
